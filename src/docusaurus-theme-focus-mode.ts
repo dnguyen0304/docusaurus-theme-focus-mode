@@ -1,5 +1,10 @@
+/// <reference types="@docusaurus/theme-classic" />
+
 declare module '@docusaurus/theme-focus-mode' {
-    interface FocusModeThemeConfig {
+    interface ThemeConfig {
         readonly swizzleIsEnabled: boolean;
+        readonly debug: {
+            readonly isEnabled: boolean;
+        };
     }
 }
