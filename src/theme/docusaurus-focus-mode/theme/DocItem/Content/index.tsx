@@ -5,7 +5,8 @@ import type ContentType from '@theme/DocItem/Content';
 import * as React from 'react';
 import { GlobalHotKeys } from 'react-hotkeys';
 import FocusMode from '../../../components/FocusMode';
-import { useFocusMode } from '../../../contexts/focus-mode';
+import { FocusModeProvider, useFocusMode } from '../../../contexts/focus-mode';
+import '../../../styles.css'; // TODO(dnguyen0304)
 
 const keyMap: KeyMap = {
     OPEN_ZEN_MODE: 'shift+Z',
@@ -13,7 +14,7 @@ const keyMap: KeyMap = {
 
 type Props = Readonly<WrapperProps<typeof ContentType>>;
 
-export default function ContentWrapper(props: Props): JSX.Element {
+const Wrapped = (props: Props): JSX.Element => {
     const { setIsOpen } = useFocusMode();
 
     const handlers = React.useMemo((): KeyHandlers => ({
@@ -28,5 +29,15 @@ export default function ContentWrapper(props: Props): JSX.Element {
                 {props.children}
             </FocusMode>
         </>
+    );
+};
+
+export default function ContentWrapper(props: Props): JSX.Element {
+    return (
+        <React.StrictMode>
+            <FocusModeProvider>
+                <Wrapped {...props} />
+            </FocusModeProvider>
+        </React.StrictMode>
     );
 };
