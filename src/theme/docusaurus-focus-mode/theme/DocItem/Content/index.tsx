@@ -22,7 +22,7 @@ export default function ContentWrapper(props: Props): JSX.Element {
     const [isOpen, setIsOpen] = React.useState<boolean>(isEnabled);
 
     const handlers = React.useMemo((): KeyHandlers => ({
-        ZEN_MODE: () => setIsOpen(true),
+        OPEN_ZEN_MODE: () => setIsOpen(true),
     }), []);
 
     return (

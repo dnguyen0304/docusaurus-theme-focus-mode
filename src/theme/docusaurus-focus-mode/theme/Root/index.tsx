@@ -4,7 +4,7 @@ import { HotKeys } from 'react-hotkeys';
 import '../../styles.css';
 
 const keyMap: KeyMap = {
-    ZEN_MODE: 'shift+Z',
+    OPEN_ZEN_MODE: 'shift+Z',
 };
 
 interface Props {

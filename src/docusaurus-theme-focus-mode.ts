@@ -10,7 +10,7 @@ declare module '@docusaurus/theme-focus-mode' {
         };
     }
 
-    type KeyBindings = 'ZEN_MODE';
+    type KeyBindings = 'OPEN_ZEN_MODE';
 
     type KeyMap = {
         [key in KeyBindings]: KeySequence;
