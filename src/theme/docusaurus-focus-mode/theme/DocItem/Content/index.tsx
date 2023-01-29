@@ -22,13 +22,12 @@ const Wrapped = (props: Props): JSX.Element => {
     }), []);
 
     return (
-        <>
-            <GlobalHotKeys keyMap={keyMap} handlers={handlers} />
+        <GlobalHotKeys keyMap={keyMap} handlers={handlers}>
             <ContentInit {...props} />
             <FocusMode>
                 {props.children}
             </FocusMode>
-        </>
+        </GlobalHotKeys>
     );
 };
 
