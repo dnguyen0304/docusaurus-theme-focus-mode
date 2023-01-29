@@ -12,11 +12,11 @@ const Context = React.createContext<ContextValue | undefined>(undefined);
 const useContextValue = (): ContextValue => {
     const {
         debug: {
-            isEnabled,
+            isOpen: isOpenDefault,
         },
     } = useFocusModeThemeConfig();
 
-    const [isOpen, setIsOpen] = React.useState<boolean>(isEnabled);
+    const [isOpen, setIsOpen] = React.useState<boolean>(isOpenDefault);
 
     return React.useMemo(
         () => ({

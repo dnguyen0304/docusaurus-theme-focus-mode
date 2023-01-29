@@ -14,7 +14,7 @@ declare module '@docusaurus/types' {
 const DEFAULT_THEME_CONFIG: FocusModeThemeConfig = {
     swizzleIsEnabled: true,
     debug: {
-        isEnabled: true,
+        isOpen: true,
     },
 };
 
@@ -26,9 +26,9 @@ export const ThemeConfigSchema = Joi.object<ThemeConfig>({
             .boolean()
             .default(DEFAULT_THEME_CONFIG.swizzleIsEnabled),
         debug: Joi.object({
-            isEnabled: Joi
+            isOpen: Joi
                 .boolean()
-                .default(DEFAULT_THEME_CONFIG.debug.isEnabled),
+                .default(DEFAULT_THEME_CONFIG.debug.isOpen),
         })
             .default(DEFAULT_THEME_CONFIG.debug),
     })
