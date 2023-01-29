@@ -3,6 +3,7 @@ import Modal from '@mui/material/Modal';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
 import { HotKeys, KeyMap } from 'react-hotkeys';
+import { useFocusMode } from '../../contexts/focus-mode';
 import ContentFocus from './ContentFocus';
 import ContentFull from './ContentFull';
 
@@ -40,17 +41,15 @@ const Glass = styled(Box)({
 
 interface Props {
     readonly children: React.ReactNode;
-    readonly isOpen: boolean;
-    readonly setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function FocusMode(
     {
         children,
-        isOpen,
-        setIsOpen,
     }: Props,
 ): JSX.Element {
+    const { isOpen, setIsOpen } = useFocusMode();
+
     const [chunkIndex, setChunkIndex] = React.useState<number>(0);
 
     const keyMap: KeyMap = React.useMemo(() => ({

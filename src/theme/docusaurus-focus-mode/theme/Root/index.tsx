@@ -1,11 +1,6 @@
-import type { KeyMap } from '@docusaurus/theme-focus-mode';
 import * as React from 'react';
-import { HotKeys } from 'react-hotkeys';
+import { FocusModeProvider } from '../../contexts/focus-mode';
 import '../../styles.css';
-
-const keyMap: KeyMap = {
-    OPEN_ZEN_MODE: 'shift+Z',
-};
 
 interface Props {
     readonly children: React.ReactNode;
@@ -14,9 +9,9 @@ interface Props {
 export default function Root({ children }: Props): JSX.Element {
     return (
         <React.StrictMode>
-            <HotKeys keyMap={keyMap}>
+            <FocusModeProvider>
                 {children}
-            </HotKeys>
+            </FocusModeProvider>
         </React.StrictMode>
     );
 };
