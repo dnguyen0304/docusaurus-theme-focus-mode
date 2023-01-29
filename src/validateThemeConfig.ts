@@ -14,7 +14,7 @@ declare module '@docusaurus/types' {
 const DEFAULT_THEME_CONFIG: FocusModeThemeConfig = {
     swizzleIsEnabled: true,
     debug: {
-        isOpen: true,
+        isOpen: false,
     },
 };
 
