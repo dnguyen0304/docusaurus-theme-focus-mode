@@ -1,4 +1,5 @@
 import * as React from 'react';
+import useFocusModeThemeConfig from '../hooks/useFocusModeThemeConfig';
 import { ReactContextError } from './errors';
 
 interface ContextValue {
@@ -9,7 +10,13 @@ interface ContextValue {
 const Context = React.createContext<ContextValue | undefined>(undefined);
 
 const useContextValue = (): ContextValue => {
-    const [isOpen, setIsOpen] = React.useState<boolean>(false);
+    const {
+        debug: {
+            isEnabled,
+        },
+    } = useFocusModeThemeConfig();
+
+    const [isOpen, setIsOpen] = React.useState<boolean>(isEnabled);
 
     return React.useMemo(
         () => ({
