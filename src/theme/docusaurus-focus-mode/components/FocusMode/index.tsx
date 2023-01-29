@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
-import { HotKeys, KeyMap } from 'react-hotkeys';
+import { GlobalHotKeys, KeyMap } from 'react-hotkeys';
 import { useFocusMode } from '../../contexts/focus-mode';
 import ContentFocus from './ContentFocus';
 import ContentFull from './ContentFull';
@@ -65,10 +65,7 @@ export default function FocusMode(
     }), []);
 
     return (
-        <HotKeys
-            handlers={handlers}
-            keyMap={keyMap}
-        >
+        <GlobalHotKeys keyMap={keyMap} handlers={handlers}>
             <StyledModal
                 onClose={() => setIsOpen(false)}
                 open={isOpen}
@@ -95,6 +92,6 @@ export default function FocusMode(
                     </ContentFocus>
                 </OverlappingLayout>
             </StyledModal>
-        </HotKeys>
+        </GlobalHotKeys>
     );
 };
