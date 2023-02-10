@@ -12,19 +12,14 @@ declare module '@docusaurus/types' {
 };
 
 const DEFAULT_THEME_CONFIG: FocusModeThemeConfig = {
-    swizzleIsEnabled: true,
     debug: {
         isOpen: false,
     },
 };
 
 // TODO(dnguyen0304): Investigate missing labels.
-// TODO(dnguyen0304): Fix incorrect ThemeConfig type.
 export const ThemeConfigSchema = Joi.object<ThemeConfig>({
     docupotamusFocusMode: Joi.object({
-        swizzleIsEnabled: Joi
-            .boolean()
-            .default(DEFAULT_THEME_CONFIG.swizzleIsEnabled),
         debug: Joi.object({
             isOpen: Joi
                 .boolean()
