@@ -5,25 +5,23 @@ export default function themeFocusMode(
     _context: LoadContext,
     options: PluginOptions,
 ): Plugin<undefined> {
-    const name = 'focus-mode';
-
-    const { swizzleIsEnabled } = options;
+    const { swizzleIsEnabled = true } = options;
 
     return {
-        name: `docupotamus-theme-${name}`,
+        name: 'docupotamus-theme-focus-mode',
 
         getThemePath() {
             if (swizzleIsEnabled) {
-                return `../lib/theme/docupotamus-${name}/swizzle`;
+                return '../lib/theme/swizzle';
             }
-            return '../lib/theme';
+            return '../lib/theme/public';
         },
 
         getTypeScriptThemePath() {
             if (swizzleIsEnabled) {
-                return `../src/theme/docupotamus-${name}/swizzle`;
+                return '../src/theme/swizzle';
             }
-            return '../src/theme';
+            return '../src/theme/public';
         },
     };
 };

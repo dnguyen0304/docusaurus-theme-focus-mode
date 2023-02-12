@@ -1,20 +1,25 @@
 import type { KeyHandlers, KeyMap } from '@docusaurus/theme-focus-mode';
-import type { WrapperProps } from '@docusaurus/types';
-import ContentInit from '@theme-init/DocItem/Content';
-import type ContentType from '@theme/DocItem/Content';
 import * as React from 'react';
 import { GlobalHotKeys } from 'react-hotkeys';
-import FocusMode from '../../../components/FocusMode';
-import { FocusModeProvider, useFocusMode } from '../../../contexts/focus-mode';
-import '../../../styles.css'; // TODO(dnguyen0304)
+import FocusMode from '../../../package/components/FocusMode';
+import { FocusModeProvider, useFocusMode } from '../../../package/contexts/focus-mode';
+import '../../../package/styles.css'; // TODO(dnguyen0304)
 
 const keyMap: KeyMap = {
     OPEN_ZEN_MODE: 'shift+Z',
 };
 
-type Props = Readonly<WrapperProps<typeof ContentType>>;
+interface Props {
+    readonly children: React.ReactNode;
+    readonly subChildren: React.ReactNode;
+};
 
-const Wrapped = (props: Props): JSX.Element => {
+const Inner = (
+    {
+        children,
+        subChildren,
+    }: Props
+): JSX.Element => {
     const { setIsOpen } = useFocusMode();
 
     const handlers = React.useMemo((): KeyHandlers => ({
@@ -23,19 +28,19 @@ const Wrapped = (props: Props): JSX.Element => {
 
     return (
         <GlobalHotKeys keyMap={keyMap} handlers={handlers}>
-            <ContentInit {...props} />
+            {children}
             <FocusMode>
-                {props.children}
+                {subChildren}
             </FocusMode>
         </GlobalHotKeys>
     );
 };
 
-export default function ContentWrapper(props: Props): JSX.Element {
+export default function ContentDecorator(props: Props): JSX.Element {
     return (
         <React.StrictMode>
             <FocusModeProvider>
-                <Wrapped {...props} />
+                <Inner {...props} />
             </FocusModeProvider>
         </React.StrictMode>
     );
